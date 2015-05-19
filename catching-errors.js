@@ -1,19 +1,19 @@
 (function () {
 	var btnAlert = document.getElementById("btnAlert");
 	btnAlert.addEventListener('click', function (e) {
-		print(new Error('this is what an error looks like'));
+		printx(new Error('this is what an error looks like'));
 	});
 
 	var nonRxClicksPerInterval = 0, nonRxThrottle = 1000, nonRxMaxRate = 1;
 	function countClickRate(event) {
 		nonRxClicksPerInterval++;
-		print('nonRxClicksPerInterval = '+nonRxClicksPerInterval);
+		printx('nonRxClicksPerInterval = '+nonRxClicksPerInterval);
 		setTimeout(function () {
 			if (nonRxClicksPerInterval > nonRxMaxRate){
-				print('In an error state, this thrown error should be caught be the caller', 'nonRxClicksPerInterval throttled');
+				printx('In an error state, this thrown error should be caught be the caller', 'nonRxClicksPerInterval throttled');
 				throw new Error('nonRxMouseRate you clicked faster than '+nonRxMaxRate+ ' per second!');
-			}else{
-				print(nonRxClicksPerInterval, 'nonRxClicksPerInterval throttled');
+			} else {
+				printx(nonRxClicksPerInterval, 'nonRxClicksPerInterval throttled');
 				nonRxClicksPerInterval = 0;
 			}
 		}, nonRxThrottle);
@@ -24,7 +24,7 @@
 		try {
 			countClickRate(event);
 		} catch (error) {
-			print(error, 'CAUGHT ERROR');
+			printx(error, 'CAUGHT ERROR');
 		}
 	});
 
@@ -46,10 +46,10 @@
 
 	clicksRx.subscribe(
 		function onNext(data) {
-			print('RxClicksPerInterval = '+data);
+			printx('RxClicksPerInterval = '+data);
 		},
 		function onError(error) {
-			print(error, 'CAUGHT ERROR');
+			printx(error, 'CAUGHT ERROR');
 		});
 
 })();

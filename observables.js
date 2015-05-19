@@ -8,7 +8,7 @@
 	//standard way to add and remove handlers by calling api-specific methods
 	// on that object
 	var handler = function(e) {
-	    print('clicked', 'btnStd');
+	    printx('clicked', 'btnStd');
 		btnStd.removeEventListener('click', handler);
 	};
 	btnStd.addEventListener('click', handler);
@@ -18,7 +18,7 @@
 	// and can then perform operations like map, filter, and more.
 	var clicksRx = Rx.Observable.fromEvent(btnRx, 'click');
 	var subscription1 = clicksRx.forEach(function (i) {
-		print('clicked', 'btnRx');
+		printx('clicked', 'btnRx');
 		console.log(i);
 		subscription1.dispose();
 	});
@@ -26,23 +26,23 @@
 	// SYNCHONOUS CODE
 	var syncPref = 'SYNChronous foreach';
 	[1,2,3].forEach(function (i) {
-		print(i, syncPref)
+		printx(i, syncPref)
 	});
-	// if you want to print something that occurs after processing a synchronous array
+	// if you want to printx something that occurs after processing a synchronous array
 	// you can just put the statement below the loop
-	print('done', syncPref);
+	printx('done', syncPref);
 	// or to catch an error, you just need to suround the entire thing in a try/catch
 	try {
 		var syncPref = 'SYNChronous foreach';
 		[1,2,3].forEach(function (i) {
-			print(i, syncPref)
+			printx(i, syncPref)
 		});
-		// if you want to print something that occurs after processing a synchronous array
+		// if you want to printx something that occurs after processing a synchronous array
 		// you can just put the statement below the loop
-		print('done', syncPref);
+		printx('done', syncPref);
 	}
 	catch (e){
-		print('error', syncPref);
+		printx('error', syncPref);
 	}
 
 	// how do we do the following 2 actions in an asynchronous collection?
@@ -52,27 +52,27 @@
 	// wont work since its executed on the event loop outside the try catch
 	try {
 		clicksRx.forEach(function (i) {
-			print('clicked', 'btnRx');
+			printx('clicked', 'btnRx');
 		});
 		// wont work
-		print('done', syncPref);
+		printx('done', syncPref);
 	}
 	catch (e){
 		// wont work
-		print('error', syncPref)
+		printx('error', syncPref)
 	}
 
 
 
 	//var subscription1 = clicksRx.subscribe(
 	//	function onNext(e) {
-	//		//print('clicked', 'btnRx');
+	//		//printx('clicked', 'btnRx');
 	//		//subscription1.dispose();
 	//	},
 	//	function onError(error) {
-	//		print('ERROR!');
+	//		printx('ERROR!');
 	//	},
 	//	function onCompleted() {
-	//		print("done");
+	//		printx("done");
 	//	});
 })();

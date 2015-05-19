@@ -1,11 +1,11 @@
 /**
- * Created by hipsterzipster on 5/18/15.
+ * Created by hipsterzipster.
  */
 
 function callbackHell() {
-	print('...');
-	print('Callback Hell');
-	print('...');
+	printx('...');
+	printx('Callback Hell');
+	printx('...');
 	app.get('/index', function(req, res, next) {
 		User.get(req.params.userId, function(err, user) {
 			if (err) next(err);
@@ -24,9 +24,9 @@ function callbackHell() {
 
 function promises() {
 	// simple iterative each subscriber gets all updates before others
-	print('...');
-	print('Promises Approach');
-	print('...');
+	printx('...');
+	printx('Promises Approach');
+	printx('...');
 
 	tweetsAsync()
 		.then(function(a) {
@@ -45,9 +45,9 @@ function promises() {
 }
 
 function multicast() {
-	print('...');
-	print('Multicast Subscribe Approach');
-	print('...');
+	printx('...');
+	printx('Multicast Subscribe Approach');
+	printx('...');
 	var source = Rx.Observable.create(function(observer) {
 		// Yield a single value and complete
 		observer.onNext(42);
@@ -55,7 +55,7 @@ function multicast() {
 		observer.onNext(50); // never gets here
 		// Any cleanup logic might go here
 		return function() {
-			print('Disposed observer: ' + JSON.stringify(observer), 'Observable');
+			printx('Disposed observer: ' + JSON.stringify(observer), 'Observable');
 		}
 	}).publish();
 	var subscriptionA = source.subscribe(createObserver('Observer A'));
@@ -64,9 +64,9 @@ function multicast() {
 }
 
 function multicastRefCount() {
-	print('...');
-	print('Multicast Reference Counting Subscribe Approach');
-	print('...');
+	printx('...');
+	printx('Multicast Reference Counting Subscribe Approach');
+	printx('...');
 	var source = Rx.Observable.create(function(observer) {
 		// Yield a single value and complete
 		observer.onNext(42);
@@ -74,7 +74,7 @@ function multicastRefCount() {
 		observer.onNext(50); // never gets here
 		// Any cleanup logic might go here
 		return function() {
-			print('Disposed observer: ' + JSON.stringify(observer), 'Observable');
+			printx('Disposed observer: ' + JSON.stringify(observer), 'Observable');
 		}
 	}).share();
 

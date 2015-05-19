@@ -27,6 +27,14 @@
 		]
 	];
 
+	var list = document.getElementById("list");
+	function printy(text, prefix) {
+		var li = document.createElement("li");
+		prefix = (prefix) ? prefix + ":  " : "";
+		li.innerHTML = prefix + text;
+		list.appendChild(li);
+	}
+
 	// regular for loop
 	function getStocksFor(stocks) {
 		var symbols = [], ctr, stock;
@@ -37,7 +45,7 @@
 		return symbols;
 	}
 
-	window.print(JSON.stringify(getStocksFor(STOCKS)), 'for', false);
+	printy(JSON.stringify(getStocksFor(STOCKS)), 'for');
 
 	// forEach
 	function getStocksForEach(stocks) {
@@ -48,7 +56,7 @@
 		return symbols;
 	}
 
-	window.print(JSON.stringify(getStocksForEach(STOCKS)), 'forEach', false);
+	printy(JSON.stringify(getStocksForEach(STOCKS)), 'forEach');
 
 
 	Array.prototype.map = function(projectionFn){
@@ -65,7 +73,7 @@
 		})
 	}
 
-	window.print(JSON.stringify(getStocksMap(STOCKS)), 'map', false);
+	printy(JSON.stringify(getStocksMap(STOCKS)), 'map');
 
 	Array.prototype.filter = function(predicateFn){
 		var results = [];
@@ -83,7 +91,7 @@
 		})
 	}
 
-	window.print(JSON.stringify(getStocksFilter(STOCKS, 300)), 'filter', false);
+	printy(JSON.stringify(getStocksFilter(STOCKS, 300)), 'filter');
 
 	function getStocksMapFilter(stocks) {
 		// we can only use
@@ -96,7 +104,7 @@
 			});
 	}
 
-	window.print(JSON.stringify(getStocksMapFilter(STOCKS)), 'map and filter', false);
+	printy(JSON.stringify(getStocksMapFilter(STOCKS)), 'map and filter');
 
 	Array.prototype.concatAll = function() {
 		var results = [];
@@ -108,6 +116,6 @@
 		return results;
 	};
 
-	window.print(JSON.stringify(EXCHANGES.concatAll()), 'exchanges concatAll', false);
+	printy(JSON.stringify(EXCHANGES.concatAll()), 'exchanges concatAll');
 
 })();
